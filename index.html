@@ -165,12 +165,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="例9-13-庆功会"><a href="#例9-13-庆功会" class="headerlink" title="例9.13 庆功会"></a>例9.13 庆功会</h1><blockquote>
-<p>来自信息学奥赛一本通</p>
-</blockquote>
-<p>【题目描述】<br>为了庆贺班级在校运动会上取得全校第一名成绩，班主任决定开一场庆功会，为此拨款购买奖品犒劳运动员。期望拨款金额能购买最大价值的奖品，可以补充他们的精力和体力。<br>【输入】<br>第一行二个数n(n &lt;= 500)，m(m &lt;= 6000)，其中n代表希望购买的奖品的种数，m表示拨款金额。<br>接下来n行，每行3个数，v、w、s，分别表示第I种奖品的价格、价值（价格与价值是不同的概念）和能购买的最大数量（买0件到s件均可），其中v &lt;= 100，w &lt;= 1000，s &lt;= 10。<br>【输出】<br>一行：一个数，表示此次购买能获得的最大的价值（注意！不是价格）。<br>【输入样例】<br>5 1000<br>80 20 4<br>40 50 9<br>30 50 7<br>40 30 6<br>20 20 1<br>【输出样例】<br>1040</p>
-<p><code>时间限制: 1000 ms         内存限制 : 65536 KB</code></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> v[<span class="number">10001</span>], w[<span class="number">10001</span>];</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">6001</span>];</span><br><span class="line"><span class="keyword">int</span> n, m, nl;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">return</span> a &gt; b ? a : b; <span class="comment">//相当于if(a&gt;b)return a;else return b;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line"> <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line"> &#123;</span><br><span class="line">  <span class="keyword">int</span> x, y, s, t = <span class="number">1</span>;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;x, &amp;y, &amp;s);</span><br><span class="line">  <span class="keyword">while</span> (s &gt;= t)</span><br><span class="line">  &#123;</span><br><span class="line">   v[++nl] = x * t; <span class="comment">//相当于nl++;v[nl]=x*t;</span></span><br><span class="line">   w[nl] = y * t;</span><br><span class="line">   s -= t;</span><br><span class="line">   t *= <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  v[++nl] = x * s;</span><br><span class="line">  w[nl] = y * s;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= nl; i++)</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j = m; j &gt;= v[i]; j--)</span><br><span class="line">   f[j] = max(f[j], f[j - v[i]] + w[i]);</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, f[m]);</span><br><span class="line"> getchar(); <span class="comment">//起暂停作用，便于观察输出结果</span></span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="例9-13-庆功会"><a href="#例9-13-庆功会" class="headerlink" title="例9.13 庆功会"></a>例9.13 庆功会</h1><p><code>来自信息学奥赛一本通</code></p>
+<p>【题目描述】<br>为了庆贺班级在校运动会上取得全校第一名成绩，班主任决定开一场庆功会，为此拨款购买奖品犒劳运动员。期望拨款金额能购买最大价值的奖品，可以补充他们的精力和体力。</p>
+        
+          <a class="article-more-a" href="/2019/12/20/%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%A5%A5%E8%B5%9B%E4%B8%80%E6%9C%AC%E9%80%9A%E4%BE%8B9-13-%E5%BA%86%E5%8A%9F%E4%BC%9A/#more">more >></a>
+        
       
 
       
@@ -190,6 +189,17 @@
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/2019//" class="article-tag-list-link color5">2019</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
@@ -471,11 +481,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">心情</a>
+                <a href="javascript:void(0)" class="js-tag color3">编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编程</a>
+                <a href="javascript:void(0)" class="js-tag color3">心情</a>
               </li>
             
             <div class="clearfix"></div>
